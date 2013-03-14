@@ -5,6 +5,23 @@
   <%= @project.name %>
 </p>
 
+<p>
+  <b>Users:</b>
+  <ul id="users-list">
+  <% for user in @project.users    %>
+       <li><%= user.email  %></li>
+  <% end %>
+  </ul>
+
+  <%=  form_tag("/projects/invite/", :method=>"POST", :remote => true) do %>
+
+    <div class="field">
+      Invite: <%= text_field_tag(:email) %> <%= submit_tag("Invite") %>
+    </div>
+    <%= hidden_field_tag(@project.id) %>
+    <%end%>
+
+</p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

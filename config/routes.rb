@@ -1,4 +1,7 @@
 Scrummer::Application.routes.draw do
+  resources :invites
+
+
   devise_for :users
 
   resources :projects

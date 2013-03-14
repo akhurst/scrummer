@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /projects
   # GET /projects.json
   def index
@@ -41,6 +43,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
+    @project.users << current_user
 
     respond_to do |format|
       if @project.save
@@ -79,5 +82,12 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
+  end
+
+  # POST /projects/invite
+  # POST /projects/invite.json
+  def invite
+    @project = Project.find(params[:id])
+    @user = User.first(:conditions => ["email = ?", params[:email]])
   end
 end
