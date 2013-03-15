@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Scrummer::Application.config.secret_token = '4b12fc352fbf1a17e035d215deb66b7411f9ae5de1fd9ea369f5fa4868393d2111d69488977e8921753a579624b31f6f397fa1ace59623d1f602160c07f3a00a'
+Scrummer::Application.config.secret_token = 'a6cd68af2c0c93e2f0bd4c576aab509f59b7ae839d02018caa4c8ce3cc46ea012fdc4f1dc93bbb14137bc646fb697907e9649260d02b77eed838717d20dff479'
