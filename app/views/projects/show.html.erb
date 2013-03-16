@@ -13,7 +13,7 @@
   <% end %>
   </ul>
 
-  <%=  form_tag("/projects/invite/", :method=>"POST", :remote => true) do %>
+  <%=  form_tag(invite_project_url, :method=>"POST", :remote => true) do %>
 
     <div class="field">
       Invite: <%= text_field_tag(:email) %> <%= submit_tag("Invite") %>

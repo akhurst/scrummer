@@ -84,10 +84,23 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # POST /projects/invite
-  # POST /projects/invite.json
+  # POST /projects/1/invite
+  # POST /projects/1/invite.json
   def invite
     @project = Project.find(params[:id])
-    @user = User.first(:conditions => ["email = ?", params[:email]])
+    @user = User.first(:conditions => ['email = ?', params[:email]])
+
+    respond_to do |format|
+      if @user.nil?
+        format.json{render json: {:result=>'failed', :message=>'user not found', }}
+      else
+        @project.users << @user
+        if @project.save
+          format.json { render :json => { :result=>'ok', :message=>'user added successfully' }}
+        else
+          format.json{render json: {:result=>'failed', :message=>'project update failed', }}
+        end
+      end
+    end
   end
 end

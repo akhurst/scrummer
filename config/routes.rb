@@ -10,7 +10,11 @@ Scrummer::Application.routes.draw do
 
   resources :invites
   resources :projects
-
+  resources :projects do
+    member do
+      post 'invite'
+    end
+  end
 
   get "project/index"
 
