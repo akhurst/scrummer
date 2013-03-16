@@ -91,16 +91,7 @@ class ProjectsController < ApplicationController
     @user = User.first(:conditions => ['email = ?', params[:email]])
 
     respond_to do |format|
-      if @user.nil?
-        format.json{render json: {:result=>'failed', :message=>'user not found', }}
-      else
-        @project.users << @user
-        if @project.save
-          format.json { render :json => { :result=>'ok', :message=>'user added successfully' }}
-        else
-          format.json{render json: {:result=>'failed', :message=>'project update failed', }}
-        end
-      end
+      format.json { render :json => @project.add_user(@user)}
     end
   end
 end
